@@ -13,7 +13,7 @@
 #include "bitmap_image.hpp"
 using namespace std;
 int yedek;
-int subline;
+int subline; //alicagim yedek class'a ait bir degisken olmamali
 int width,height;
 //Satır sayısını alıyoruz ve next toplam satır sayımızı veriyor.
 
@@ -23,29 +23,19 @@ void secret::satirsayisi(){
     next = 0;
     while (getline(openFile, line)) {
     if (line.empty()) continue;
-
     istringstream iss(line);
-
     next = 1+next;
-
   }
   subline = next;
-
 }
 
 
 void secret::sayigir(){
     ifstream file("pikseller.txt");
-    int p;
     satirsayisi();
     semagir();
-    //Herbir R G B değerini alıyorum ve işleme sokuyorum
-    for(p = 0; p < next;p++){
-	getline(file, girdi);
-	//cout << "Sifrelenicek Sayinizi Giriniz" << endl;
-    girdiuzn = girdi.size();
-	//cout<<"TEST "<< girdi <<"  uzunluk :   "<< girdiuzn<<endl;
-
+    for(p = 0; p < next; p++){
+	getline(file, girdi); //Herbir R G B değerini alıyorum ve işleme sokuyorum
 	fonksyonata();
 	paydahesapla();
 	paydasec();
@@ -61,15 +51,11 @@ void secret::semagir(){
 	cout << endl << "Dagitacilaklar:\t";
 	cin >> semay;
 	yedek = semay;
-	cout << endl;
-    cout << "Goruntunun Genisligini girin" <<endl;
+    cout << endl << "Goruntunun Genisligini girin" <<endl;
     cin >> width;
     cout << "Goruntunun Yuksekligini girin" <<endl;
     cin >> height;
     cout<<endl;
-    //cout<<"Test  "<<"("<<semax<<","<<semay<<")"<<endl<<endl;
-
-
 }
 
 
@@ -77,13 +63,9 @@ void secret::semagir(){
 void secret::fonksyonata(){
     i = 0;
     random = new int[semay-1];
-    //cout<<"F(x)="<<girdi;
     for(i=0;i<semay-1;i++){
-        random[i] = rand() % 4;
-        //cout<<"+"<<random[i]<<"x^"<<i+1;
+        random[i] = rand() % 251; // a + bx+ cx^2 ... burada a b c d atamalarini yapiyoruz random bir sayinin 251 e gore modunu aliyoruz.
     }
-
-    //cout<<endl;
 }
 
 
@@ -96,50 +78,39 @@ int secret::usal(int sayi,int ussu){
 }
 
 
-//Kaç kişi varsa o kadar payda hesaplanıyor.Ardından payda yani hangi kişilere dağıtılacağı seçilecek.
+//Kaç kişi varsa o kadar payda(pay) hesaplanıyor.Ardından payda yani hangi kişilere dağıtılacağı seçilecek.
 void secret::paydahesapla(){
     i = 0,toplam = 0;
     value = atoi(girdi.c_str());
-    d = new int[semax-1];
+    partition = new int[semax-1];
     for(i=0;i<semax;i++){
             toplam = 0;
             for(j=0;j<semay-1;j++){
                 toplam = toplam+random[j]*usal(i+1,j+1) ;
             }
-        d[i] = (toplam+value) % 251;	//251 e göre mod aldım çünkü çakışmaları önlemem gerekiyor.
-        //cout<<"D"<<i+1<<"=("<<i+1<<","<<d[i]<<")"<<endl;
+        partition[i] = (toplam+value) % 251;	//251 e göre mod aldım çünkü çakışmaları önlemem gerekiyor.
     }
 }
 
 
-//Aşağıda hangi kişilere dağıtılacağı seçiliyor.Rastgele yaptırıyorum.
+//Aşağıda hangi kişilere hangi payda(pay) degerlerinin dağıtılacağı seçiliyor. Rastgele secim yaptırıyorum.
 void secret::paydasec(){
-    //cout<<endl<<"secilen paydalar : "<<endl;
-
-    secilenler = new int [semay];
+    selectedpartition = new int [semay];
 
         for(i =0;i<semay;i++){
-
-        rastgele = rand() %semax+1;
-            if(i>0){
-            for(j=0;j<i;j++){
-
-                if(secilenler[j]==rastgele) {j = -1; rastgele = rand() %semax+1;}
-            }
-            secilenler[i]=rastgele;
-
-            }
-            else secilenler[i] = rastgele;
-        //if(secilenler[i-1] != rastgele)
-        //secilenler[i]=rastgele;
-
-        //cout<<"D"<<secilenler[i]<<endl;
-
-        }
+	        rastgele = rand() %semax+1;
+	            if(i>0){
+		            for(j=0;j<i;j++){
+		                if(selectedpartition[j]==rastgele) {j = -1; rastgele = rand() %semax+1;}
+		            }
+		            selectedpartition[i]=rastgele;
+	            }
+	            else selectedpartition[i] = rastgele;
+	        }
     }
 
 
-    //Lagrange İnterpolasyondan çıkan sonuç double ise integer'a çeviriyorum.251 tabanında çalıştığıma dikkat edin !
+//Lagrange İnterpolasyondan çıkan sonuç double ise integer'a çeviriyorum.251 tabanında çalıştığıma dikkat edin !
 void secret::oylemi(double interpolasyon){
                             while(1){
                             if((interpolasyon-(int)interpolasyon) != 0){pay = pay+251; interpolasyon = (pay/payda);}
@@ -159,20 +130,20 @@ void secret::fonksyonbul(){
         //cout<<i+1<<".Kullanicinin alicagi denklem"<<endl;
 
             for(j=0;j<semay;j++){
-                if(secilenler[i]!=secilenler[j]){
-                    pay = -secilenler[j]*pay;
-                    payda = (secilenler[i]-secilenler[j])*payda;
+                if(selectedpartition[i]!=selectedpartition[j]){
+                    pay = -selectedpartition[j]*pay;
+                    payda = (selectedpartition[i]-selectedpartition[j])*payda;
                     interpolasyon = (pay/payda);
 
-                    //cout<<"(x-"<<secilenler[j]<<")/("<<secilenler[i]-secilenler[j]<<") *";
-                    tut = secilenler[i];
+                    //cout<<"(x-"<<selectedpartition[j]<<")/("<<selectedpartition[i]-selectedpartition[j]<<") *";
+                    tut = selectedpartition[i];
                 }}
         oylemi(interpolasyon);	//KONTROL çıkan değerin double olması ihtimaline karşı kontrol ettiriyorum.Double ise integer'a çeviriyorum.
         //cout<<"***********"<<payda<<"***"<<pay<<"***"<<"*"<<interpolasyoni<<"**"<<endl<<endl;
-        int sonucc = ((interpolasyoni * d[tut-1]) % 251);   //Dağıtacağım piksellerim
+        int sonucc = ((interpolasyoni * partition[tut-1]) % 251);   //Dağıtacağım piksellerim
         //Negatif aşağıda kesin
         if((sonucc < 0)){sonucc = sonucc +251;}
-        else {sonucc = ((interpolasyoni * d[tut-1]) % 251);}
+        else {sonucc = ((interpolasyoni * partition[tut-1]) % 251);}
         //cout<<endl<<sonucc<<endl;
 
             string Result;

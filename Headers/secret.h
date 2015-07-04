@@ -12,17 +12,16 @@ class secret
 	public:
 
 	string girdi,filename;
-	int girdiuzn;
-	int next;
+	int next,p;
 	void sayigir();
 	int semax, semay;
 	void semagir();
-	int *random,i,j,value;
+	int *random,i,j,value; //*random : "The random value function"
 	void fonksyonata();
-	int *d,toplam,sayi,ussu,sonuc;
+	int *partition,toplam,sayi,ussu,sonuc;
 	int usal(int,int);
 	void paydahesapla();
-	int *secilenler,rastgele;
+	int *selectedpartition,rastgele;
 	void paydasec();
 	double payda,pay;
 	double interpolasyon;
