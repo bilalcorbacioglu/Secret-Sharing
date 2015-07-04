@@ -59,6 +59,43 @@ Teorik olarak Sır Paylaşımı budur ve bu şekilde gerçekleştirilir. Bu aşa
 #####Alıntı
     PROF. DR. Vasif Vagifoğlu NABİYEV, "Algoritmalar",4.Baskı 256-260
 
+##Settings
+  * Paylaştırma
+  
+  * İlk olarak bmptotxt.cpp derlenir. Bu bize pikseller.txt adlı dosyayı üretecektir.
+  * Son olarak main.cpp, secret.cpp ile birlikte linking aşamasından geçirilir.
+  
+
+  * Yeniden Yapılandırma
+
+  * solve.cpp nin derlenmesi  yeterli olacaktır.
+  
+
+##Run
+
+* Paylaştırma
+
+```bash
+g++ -c bmptotxt.cpp
+g++ -o bmptotxt bmptotxt.o
+./bmptotxt
+g++ -c main.cpp
+g++ -c secret.cpp
+g++ -c -I ../include secret.cpp
+g++ -c -D NDEBUG secret.cpp
+g++ -c -D NDEBUG=3 secret.cpp
+g++ -c -O2 secret.cpp
+g++ -o secret main.o secret.o
+./secret
+```
+* Yeniden Yapılandırma
+
+```bash
+g++ -c solve.cpp
+g++ -o solve solve.o
+./solve
+```
+
 ##Example
 
 Programımızdan ufak bir örnek verelim. Gizli resmimizi "8" kişi içinden rastgele "4" kişiye dağıtalım.
