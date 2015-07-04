@@ -1,20 +1,14 @@
 #include <iostream>
-#include <string>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
-#include <sstream>
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
 #include <string>
-#include "bitmap_image.hpp"
 
 using namespace std;
 
 int main () {
     FILE *streamIn;
-    string openfilenamei;
+ 	string openfilenamei;
     cout << "Resminizin adini girin (.bmp girmeyin) (Program ile ayni klasorde bulunmasina dikkat edin )"<<endl;
     cin >> openfilenamei;
     openfilenamei = openfilenamei +".bmp";
@@ -27,23 +21,23 @@ int main () {
     unsigned char info[54];
     fread(info, sizeof(unsigned char), 54, streamIn);
 
-    unsigned int width1 = *(int*)&info[18];
-    unsigned int height1 = *(int*)&info[22];
+    int width = *(int*)&info[18];
+    int height = *(int*)&info[22];
 
-    unsigned char image11[width1*height1][3];
-    unsigned int i = 0;
+    int image[width*height][3];
+    int i = 0;
     FILE *fw;
     fw = fopen("pikseller.txt","w");
-
-    for(i=0;i<width1*height1;i++) {
-        image11[i][2] = getc(streamIn);
-        image11[i][1] = getc(streamIn);
-        image11[i][0] = getc(streamIn);
-        printf("pixel %d : [%d,%d,%d]\n",i+1,image11[i][0],image11[i][1],image11[i][2]);
-        fprintf(fw,"%d %d %d\n",image11[i][0],image11[i][1],image11[i][2]);
+    for(i=0;i<width*height;i++) {
+        image[i][2] = getc(streamIn);
+        image[i][1] = getc(streamIn);
+        image[i][0] = getc(streamIn);
+        printf("pixel %d : [%d,%d,%d]\n",i+1,image[i][0],image[i][1],image[i][2]);
+        fprintf(fw,"%d\n%d\n%d\n",image[i][0],image[i][1],image[i][2]);
 
     }
 
     fclose(streamIn);
+
     return 0;
 }
