@@ -18,14 +18,16 @@ class secret
 	void semagir();
 	int *random,i,j,value; //*random : "The random value function"
 	void fonksyonata();
-	int *partition,toplam,sayi,ussu,sonuc;
+	int *partition,toplam,sayi,ussu,usalsonuc;
 	int usal(int,int);
 	void paydahesapla();
 	int *selectedpartition,rastgele;
 	void paydasec();
-	double payda,pay;
+	double payda,pay; //Interpolasyonda matematiksel olarak pay ve payda
 	double interpolasyon;
-	int interpolasyoni;
+	int tut;
+	int interpolasyonint;
+	int results;
 	void oylemi(double);
     void satirsayisi();
     void fonksyonbul();

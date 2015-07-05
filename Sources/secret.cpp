@@ -64,17 +64,17 @@ void secret::fonksyonata(){
     i = 0;
     random = new int[semay-1];
     for(i=0;i<semay-1;i++){
-        random[i] = rand() % 251; // a + bx+ cx^2 ... burada a b c d atamalarini yapiyoruz random bir sayinin 251 e gore modunu aliyoruz.
+        random[i] = rand() % 4; // 251 e gore mod aldigimizda 12 8 icin mesela goruntu bozuluyor.
     }
 }
 
 
 //Basitce us alma bloğu
 int secret::usal(int sayi,int ussu){
-    sonuc = 1;
+    usalsonuc = 1;
     for(int i=1;i<=ussu;i++){
-            sonuc=sonuc*sayi;}
-        return sonuc;
+            usalsonuc=usalsonuc*sayi;}
+        return usalsonuc;
 }
 
 
@@ -112,124 +112,131 @@ void secret::paydasec(){
 
 //Lagrange İnterpolasyondan çıkan sonuç double ise integer'a çeviriyorum.251 tabanında çalıştığıma dikkat edin !
 void secret::oylemi(double interpolasyon){
-                            while(1){
-                            if((interpolasyon-(int)interpolasyon) != 0){pay = pay+251; interpolasyon = (pay/payda);}
-                            else {interpolasyoni = (int)interpolasyon; break;}
-
-                        }}
+                            while(1) {
+	                            if((interpolasyon-(int)interpolasyon) != 0) {
+	                            		pay = pay+251; interpolasyon = (pay/payda);
+	                            }
+	                            
+	                            else {
+	                            		interpolasyonint = (int)interpolasyon;
+	                            		break;
+	                            }
+	                        }
+                    	}
 
 //Kullanıcıların alacağı yeni piksel değerleri aşağıda hesaplanıp .txt yazılacak.
 void secret::fonksyonbul(){
 
-        int tut;
-        for(i=0;i<semay;i++){
+        //Interpolasyon islemine baslaniyor
+		//Asagidaki ic ice bulunan for dongusunu daha rahat kavramak icin Lagrange Interpolasyonuna goz atin.
 
-        ofstream dosya;
-        payda = 1;
-        pay = 1;
-        //cout<<i+1<<".Kullanicinin alicagi denklem"<<endl;
+        for(i = 0; i < semay; i++){
+	        ofstream dosya;
+	        payda = 1, pay = 1; //Interpolasyonda matematiksel olarak pay ve payda
 
-            for(j=0;j<semay;j++){
-                if(selectedpartition[i]!=selectedpartition[j]){
-                    pay = -selectedpartition[j]*pay;
-                    payda = (selectedpartition[i]-selectedpartition[j])*payda;
-                    interpolasyon = (pay/payda);
+	        for(j = 0; j < semay; j++){
+	            if( selectedpartition[i] != selectedpartition[j] ) {
+	                pay = -selectedpartition[j] * pay;
+	                payda = ( selectedpartition[i] - selectedpartition[j] ) * payda;
+	                interpolasyon = ( pay / payda );
+	                tut = selectedpartition[i];
+	            }
+        	}
+        	//KONTROL çıkan değerin double olması ihtimaline karşı kontrol ettiriyorum.Double ise integer'a çeviriyorum.
+	        //Basina (int) koy diye dusunurseniz hata edersiniz cunku , den sonraki kisim bizim icin oldukca onemli
+	        oylemi(interpolasyon);
 
-                    //cout<<"(x-"<<selectedpartition[j]<<")/("<<selectedpartition[i]-selectedpartition[j]<<") *";
-                    tut = selectedpartition[i];
-                }}
-        oylemi(interpolasyon);	//KONTROL çıkan değerin double olması ihtimaline karşı kontrol ettiriyorum.Double ise integer'a çeviriyorum.
-        //cout<<"***********"<<payda<<"***"<<pay<<"***"<<"*"<<interpolasyoni<<"**"<<endl<<endl;
-        int sonucc = ((interpolasyoni * partition[tut-1]) % 251);   //Dağıtacağım piksellerim
-        //Negatif aşağıda kesin
-        if((sonucc < 0)){sonucc = sonucc +251;}
-        else {sonucc = ((interpolasyoni * partition[tut-1]) % 251);}
-        //cout<<endl<<sonucc<<endl;
+	        results = ((interpolasyonint * partition[tut-1]) % 251);   //Dağıtacağım piksellerim
+	        //interpolasyonun sonucu negatif ise asagidaki isleme sokuyoruz.
+	        if((results < 0)){
+	        	results = results + 251;
+	        }
+	        else {
+	        	results = ( ( interpolasyonint * partition[tut-1] ) % 251 );
+	        }
 
-            string Result;
-            stringstream convert;
-            convert << i;
-            Result = convert.str();
+	        string Result;
+	        stringstream convert;
+	        convert << i;
+	        Result = convert.str();
 
-        //1.txt 2.txt 3.txt ...
-        filename = Result + ".txt";
-        //cout<<endl<<filename<<endl;
-
-        dosya.open(filename.c_str(), ios::out | ios::binary| ios::app);
-        dosya << sonucc << endl;
+	        //1.txt 2.txt 3.txt ...
+	        filename = Result + ".txt";
+	        dosya.open(filename.c_str(), ios::out | ios::binary| ios::app);
+	        dosya << results << endl;
         }
 }
 
 
 void pixel::translate(){
-    //ASLINDA BUNA GEREK KALMADI MIRAS ALDIGIM ICIN SATIR SAYIM BELLI
 
     //totaline
     ifstream openFilet("pikseller.txt");
     string linet;
 
-    while (getline(openFilet, linet)) {
-    if (linet.empty()) continue;
+	    while (getline(openFilet, linet)) {
+		    if (linet.empty()) continue;
 
-    istringstream iss(linet);
+		    istringstream iss(linet);
 
-    nextt = 1+nextt;
+		    nextt = 1 + nextt;
 
-  }
-  rgbarray = new int[nextt];
+	  	}
+
+  	rgbarray = new int[nextt];
 
 
-//translate
-//FILE *fwt;
-//fwt = fopen("pixel.txt","w");
+	//translate
 
-for(pt=0;pt<yedek;pt++){
-        string Resultt;
-        stringstream convertt;
-        convertt << pt;
-        Resultt = convertt.str();
+		for(pt = 0; pt < yedek; pt++){
+			string Resultt;
+			stringstream convertt;
+			convertt << pt;
+		    Resultt = convertt.str();
+			openfilename = Resultt+".txt";
 
-        openfilename = Resultt+".txt";
-                //Assignment
-                it = 0;
-                ifstream openFile1t(openfilename.c_str());
-                string line1t;
+			//Assignment
+			it = 0;
+			ifstream openFile1t(openfilename.c_str());
+			string line1t;
 
-                while (getline(openFile1t, line1t)) {
-                if (line1t.empty()) continue;
-                istringstream iss(line1t);
-                valuet = atoi(line1t.c_str());
-                rgbarray[it]  = valuet;
+				while (getline(openFile1t, line1t)) {
+					if (line1t.empty()) continue;
+					istringstream iss(line1t);
+					valuet = atoi(line1t.c_str());
+					rgbarray[it]  = valuet;
+					it++;
+				}
 
-                it++;}
-                //1.txt 2.txt 3.txt ...
-        filenamet = Resultt + Resultt +".txt";
-        //cout<<endl<<filenamet<<endl;
-    ofstream txtt;
-    txtt.open(filenamet.c_str(), ios::out | ios::app);
-    it = 0;
-    jt = 0;
+		    //11.txt 22.txt 33.txt ...
+		    filenamet = Resultt + Resultt +".txt";
+		    ofstream txtt;
+		    txtt.open(filenamet.c_str(), ios::out | ios::app);
+		    it = 0;
+		    jt = 0;
 
-        for (it = 0; it < nextt; ++it)
-        {
+		        for (it = 0; it < nextt; ++it)
+		        {
 
-            if(jt == 1 || jt == 0){
-                txtt<<rgbarray[it] << " ";
-                jt++;
-            }
-            else if (jt == 2){
-                txtt<<rgbarray[it];
-                jt++;
-            }
-            else if(jt == 3){
-                txtt<<endl;
-                jt=0;
-                it = it-1;
-            }
-        }
+		            if(jt == 1 || jt == 0){
+		                txtt<<rgbarray[it] << " ";
+		                jt++;
+		            }
+		            else if (jt == 2){
+		                txtt<<rgbarray[it];
+		                jt++;
+		            }
+		            else if(jt == 3){
+		                txtt<<endl;
+		                jt=0;
+		                it = it-1;
+		            }
+		        }
+		}
+	imagetranslate();
 }
-imagetranslate();
-}
+
+
 void pixel::del(){
     it =0;
     for(it=0;it<yedek;it++){
@@ -240,58 +247,52 @@ void pixel::del(){
 
         openfilenamede = Resulttde +".txt";
         remove(openfilenamede.c_str());
-        //cout<<"Remove : "<<openfilenamede<<endl;
         openfilenamede = Resulttde + Resulttde +".txt";
-        remove(openfilenamede.c_str());;
-        //cout<<"Remove : "<<openfilenamede<<endl;
+        remove(openfilenamede.c_str());
     }
 }
 
 void pixel::imagetranslate(){
     subline = subline/3;
-    //cout<<"Subline : "<<subline<<endl; //+1 koyuyor islemleri ona gore yapmaliyiz satir sayim
     pt = 0;
-    for(pt=0; pt<yedek; pt++){
-        string Resultti;
-        stringstream convertti;
-        convertti << pt;
-        Resultti = convertti.str();
+	    for(pt=0; pt<yedek; pt++){
+	        string Resultti;
+	        stringstream convertti;
+	        convertti << pt;
+	        Resultti = convertti.str();
+	        openfilenamei = "./"+ Resultti +".txt";
+	    	FILE *imagee;
+	    	imagee = fopen(openfilenamei.c_str(), "r");
 
-        openfilenamei = "./"+ Resultti +".txt";
+	   		unsigned char image11[subline][3];
 
-    FILE *imagee;
-    imagee = fopen(openfilenamei.c_str(), "r");
+	    	for (i=0; fscanf (imagee, "%d %d %d", &r, &g, &b) == 3; ++i) {
+	        	image11[i][0] = r;
+	        	image11[i][1] = g;
+	       		image11[i][2] = b;
+	    	}
 
-    unsigned char image11[subline][3];
-
-    for (i=0; fscanf (imagee, "%d %d %d", &r, &g, &b) == 3; ++i) {
-        image11[i][0] = r;
-        image11[i][1] = g;
-        image11[i][2] = b;
-    }
-
-fclose(imagee);
+			fclose(imagee);
 
 
-    bitmap_image image(height,width);   //1.si yukseklik 2.si genislik
-               image_drawer draw(image);
-				int k = 0;
-                for (unsigned int d = 0; d < image.width(); ++d)
-               {
-                  for (unsigned int m = 0; m < image.height(); ++m)
-                  {
-                  		image.set_pixel(d,m,image11[k][0],image11[k][1],image11[k][2]);
-                    k++;
+		    bitmap_image image(height,width);   //1.si yukseklik 2.si genislik
+		               image_drawer draw(image);
+						int k = 0;
+		                for (unsigned int d = 0; d < image.width(); ++d)
+		               {
+		                  for (unsigned int m = 0; m < image.height(); ++m)
+		                  {
+		                  		image.set_pixel(d,m,image11[k][0],image11[k][1],image11[k][2]);
+		                    k++;
 
-                  }
-               }
-               openfilenamei = Resultti+".bmp";
-               image.save_image(openfilenamei.c_str());
+		                  }
+		               }
+		               openfilenamei = Resultti+".bmp";
+		               image.save_image(openfilenamei.c_str());
+		}
 
-
-
-}del();
-cout<<"Finish"<<endl;
+	del();
+	cout<<"Finish"<<endl;
 }
 
 
