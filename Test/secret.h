@@ -1,23 +1,3 @@
-/*
-**************************************************************************
-*                                                                         
-*                         Secret Image Sharing                            
-*	                   Sır Paylaşımı Algoritması                          
-*                                                                         
-* Yazar: Bilal Çorbacıoğlu - 2015  				     					  
-* 													                      
-*                                                                         
-* Not: Sır paylaşımı algoritması kullanılarak herhangi bir resmi 		  
-* kullanıcılara paylaştıran kod bloğu. Kullanıcılara dağıtılan resimlerin 
-* piksel değerleri rastgele olduğu için anlamsız resimler ortaya çıkar.	  
-* C++ ta .txt leri oluşturuyorum.Txt to Bmp de başka bir dil kullandım.   
-* Bir sonraki aşamada Arayüz hazırlanacak ve anlamsız resimler anlamlı    
-* resimlerin içine gömülecektir.								 	      
-* 												                          
-* Referans gösterilmesi halinde paylaşılabilinir.						  
-*                                                                         
-**************************************************************************
-*/
 #ifndef SECRET_H
 #define SECRET_H
 #include <iostream>
@@ -32,21 +12,22 @@ class secret
 	public:
 
 	string girdi,filename;
-	int girdiuzn;
-	int next;
+	int next,p;
 	void sayigir();
 	int semax, semay;
 	void semagir();
-	int *random,i,j,value;
+	int *random,i,j,value; //*random : "The random value function"
 	void fonksyonata();
-	int *d,toplam,sayi,ussu,sonuc;
+	int *partition,toplam,sayi,ussu,usalsonuc;
 	int usal(int,int);
 	void paydahesapla();
-	int *secilenler,rastgele;
+	int *selectedpartition,rastgele;
 	void paydasec();
-	double payda,pay;
+	double payda,pay; //Interpolasyonda matematiksel olarak pay ve payda
 	double interpolasyon;
-	int interpolasyoni;
+	int tut;
+	int interpolasyonint;
+	int results;
 	void oylemi(double);
     void satirsayisi();
     void fonksyonbul();
