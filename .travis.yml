@@ -2,7 +2,7 @@ language: cpp
 compiler: gcc
 
 script:
-  - cd Test
+  - cd Secret-Image-Sharing/Test
   - g++ -c main_test.cpp
   - g++ -c secret.cpp
   - g++ -c -I ../include secret.cpp
