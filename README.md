@@ -76,23 +76,23 @@ Teorik olarak Sır Paylaşımı budur ve bu şekilde gerçekleştirilir. Bu aşa
 * Paylaştırma
 
 ```bash
-g++ -c bmptotxt.cpp
-g++ -o bmptotxt bmptotxt.o
-./bmptotxt
-g++ -c main.cpp
-g++ -c secret.cpp
-g++ -c -I ../include secret.cpp
-g++ -c -D NDEBUG secret.cpp
-g++ -c -D NDEBUG=3 secret.cpp
-g++ -c -O2 secret.cpp
-g++ -o secret main.o secret.o
+$ g++ -c bmptotxt.cpp
+$ g++ -o bmptotxt bmptotxt.o
+$ ./bmptotxt
+$ g++ -c main.cpp
+$ g++ -c secret.cpp
+$ g++ -c -I ../include secret.cpp
+$ g++ -c -D NDEBUG secret.cpp
+$ g++ -c -D NDEBUG=3 secret.cpp
+$ g++ -c -O2 secret.cpp
+$ g++ -o secret main.o secret.o
 ./secret
 ```
 * Yeniden Yapılandırma
 
 ```bash
-g++ -c solve.cpp
-g++ -o solve solve.o
+$ g++ -c solve.cpp
+$ g++ -o solve solve.o
 ./solve
 ```
 
