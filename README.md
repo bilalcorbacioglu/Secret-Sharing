@@ -1,4 +1,5 @@
-# Sır Paylaşımı 
+# Secret Sharing
+
 [![Secret-Sharing](https://img.shields.io/badge/release-v1.0.0-red.svg)](https://github.com/bilalcorbacioglu/Secret-Sharing/releases) [![Secret-Sharing](https://travis-ci.org/bilalcorbacioglu/Secret-Sharing.svg?branch=master)](https://travis-ci.org/bilalcorbacioglu/Secret-Sharing) [![Secret-Sharing](https://img.shields.io/badge/consistent-%2570-brightgreen.svg)](https://github.com/bilalcorbacioglu/Secret-Sharing) [![Secret-Sharing](https://img.shields.io/badge/code quality-B-blue.svg?style=flat-square)](https://github.com/bilalcorbacioglu/Secret-Sharing)  [![Secret-Sharing](https://img.shields.io/badge/license-GPL-yellowgreen.svg)](https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/LICENSE) 
 
   1979'da Blackley ve Shamir tarafından ayrı zamanlarda önerilmıştir. Amaç gizli olan verinin "n" kişiye dağıtılmasıdır. Sır paylaşma şemalarından "n" kişiye gönderilen bilgi, pay olarak adlandırılır. Katılımcılardan "k" tanesi yada daha fazlasının bir araya gelerek, ellerindeki pay bilgilerini kullanmalarıyla gizli veri ortaya çıkar.
