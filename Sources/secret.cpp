@@ -69,15 +69,6 @@ void secret::fonksyonata(){
 }
 
 
-//Basitce us alma bloğu
-int secret::usal(int sayi,int ussu){
-    usalsonuc = 1;
-    for(int i=1;i<=ussu;i++){
-            usalsonuc=usalsonuc*sayi;}
-        return usalsonuc;
-}
-
-
 //Kaç kişi varsa o kadar payda(pay) hesaplanıyor.Ardından payda yani hangi kişilere dağıtılacağı seçilecek.
 void secret::paydahesapla(){
     i = 0,toplam = 0;
@@ -86,7 +77,7 @@ void secret::paydahesapla(){
     for(i=0;i<semax;i++){
             toplam = 0;
             for(j=0;j<semay-1;j++){
-                toplam = toplam+random[j]*usal(i+1,j+1) ;
+                toplam = toplam+random[j]*pow(i+1,j+1) ;
             }
         partition[i] = (toplam+value) % 251;	//251 e göre mod aldım çünkü çakışmaları önlemem gerekiyor.
     }

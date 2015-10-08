@@ -18,8 +18,7 @@ class secret
 	void semagir();
 	int *random,i,j,value; //*random : "The random value function"
 	void fonksyonata();
-	int *partition,toplam,sayi,ussu,usalsonuc;
-	int usal(int,int);
+	int *partition,toplam,sayi,ussu;
 	void paydahesapla();
 	int *selectedpartition,rastgele;
 	void paydasec();
