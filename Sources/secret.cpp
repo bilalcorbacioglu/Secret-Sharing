@@ -17,6 +17,39 @@ int subline; //alicagim yedek class'a ait bir degisken olmamali
 int width,height;
 //Satır sayısını alıyoruz ve next toplam satır sayımızı veriyor.
 
+void secret::createtxt(){
+    FILE *streamIn;
+ 	string openfilenamei;
+    cout << "Resminizin adini girin (.bmp girmeyin) (Program ile ayni klasorde bulunmasina dikkat edin )"<<endl;
+    cin >> openfilenamei;
+    openfilenamei = openfilenamei +".bmp";
+    streamIn = fopen(openfilenamei.c_str(), "r");
+    if (streamIn == (FILE *)0) {
+        printf("File opening error ocurred. Exiting program.\n");
+    }
+
+    unsigned char info[54];
+    fread(info, sizeof(unsigned char), 54, streamIn);
+
+    int width = *(int*)&info[18];
+    int height = *(int*)&info[22];
+
+    int image[width*height][3];
+    int i = 0;
+    FILE *fw;
+    fw = fopen("pikseller.txt","w");
+    for(i=0;i<width*height;i++) {
+        image[i][2] = getc(streamIn);
+        image[i][1] = getc(streamIn);
+        image[i][0] = getc(streamIn);
+        printf("pixel %d : [%d,%d,%d]\n",i+1,image[i][0],image[i][1],image[i][2]);
+        fprintf(fw,"%d\n%d\n%d\n",image[i][0],image[i][1],image[i][2]);
+
+    }
+
+    fclose(streamIn);
+}
+
 void secret::satirsayisi(){
     ifstream openFile("pikseller.txt");
     string line;
@@ -31,6 +64,7 @@ void secret::satirsayisi(){
 
 
 void secret::sayigir(){
+	createtxt();
     ifstream file("pikseller.txt");
     satirsayisi();
     semagir();

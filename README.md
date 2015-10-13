@@ -77,9 +77,6 @@ Teorik olarak Sır Paylaşımı budur ve bu şekilde gerçekleştirilir. Bu aşa
 * Paylaştırma
 
 ```bash
-$ g++ -c bmptotxt.cpp
-$ g++ -o bmptotxt bmptotxt.o
-$ ./bmptotxt
 $ g++ -c main.cpp
 $ g++ -c secret.cpp
 $ g++ -c -I ../include secret.cpp

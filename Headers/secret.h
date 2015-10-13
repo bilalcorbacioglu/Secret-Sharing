@@ -31,6 +31,7 @@ class secret
     void satirsayisi();
     void fonksyonbul();
     int getInt(void);
+    void createtxt();
 
 };
 
