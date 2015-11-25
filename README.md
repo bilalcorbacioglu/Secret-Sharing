@@ -82,7 +82,6 @@ $ g++ -c secret.cpp
 $ g++ -c -I ../include secret.cpp
 $ g++ -c -D NDEBUG secret.cpp
 $ g++ -c -D NDEBUG=3 secret.cpp
-$ g++ -c -O2 secret.cpp
 $ g++ -o secret main.o secret.o
 ./secret
 ```
