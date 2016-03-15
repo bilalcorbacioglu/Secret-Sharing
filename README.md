@@ -102,14 +102,15 @@ Orjinal Resim
 
 Paylar
 
-![Pay-0](http://internproject.zz.mu/res/0.bmp)
-![Pay-1](http://internproject.zz.mu/res/1.bmp)
-![Pay-2](http://internproject.zz.mu/res/2.bmp)
-![Pay-3](http://internproject.zz.mu/res/3.bmp)
+![Pay-0](https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/image/1.bmp?raw=true)
+![Pay-1](https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/image/2.bmp?raw=true)
+![Pay-2](https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/image/3.bmp?raw=true)
+![Pay-3](https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/image/4.bmp?raw=true)
 
 Elde Edilen Çıktı
 
-![Cikti](http://internproject.zz.mu/res/new.bmp)
+![Cikti](https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/image/c.bmp?raw=true)
+
 
 ### Credits
 
