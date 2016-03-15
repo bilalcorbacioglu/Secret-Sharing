@@ -20,7 +20,7 @@
 
     <section class="main-content">
       <h1>
-<a id="sır-paylaşımı" class="anchor" href="#s%C4%B1r-payla%C5%9F%C4%B1m%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sır Paylaşımı</h1>
+<a id="sır-paylaşımı" class="anchor" href="#s%C4%B1r-payla%C5%9F%C4%B1m%C4%B1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sır Paylaşımı</h1>
 
 <p><a href="https://github.com/bilalcorbacioglu/Secret-Sharing/releases"><img src="https://img.shields.io/badge/release-v1.0.0-red.svg" alt="Secret-Sharing"></a> <a href="https://travis-ci.org/bilalcorbacioglu/Secret-Sharing"><img src="https://travis-ci.org/bilalcorbacioglu/Secret-Sharing.svg?branch=master" alt="Secret-Sharing"></a> <a href="https://github.com/bilalcorbacioglu/Secret-Sharing"><img src="https://img.shields.io/badge/consistent-%2570-brightgreen.svg" alt="Secret-Sharing"></a> <a href="https://github.com/bilalcorbacioglu/Secret-Sharing"><img src="https://img.shields.io/badge/code%20quality-B-blue.svg?style=flat-square" alt="Secret-Sharing"></a>  <a href="https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-GPL-yellowgreen.svg" alt="Secret-Sharing"></a> </p>
 
@@ -39,7 +39,7 @@
 </code></pre>
 
 <h2>
-<a id="shamirin-sır-paylaşma-Şeması" class="anchor" href="#shamirin-s%C4%B1r-payla%C5%9Fma-%C5%9Eemas%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shamir'in Sır Paylaşma Şeması</h2>
+<a id="shamirin-sır-paylaşma-Şeması" class="anchor" href="#shamirin-s%C4%B1r-payla%C5%9Fma-%C5%9Eemas%C4%B1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shamir'in Sır Paylaşma Şeması</h2>
 
 <p>Amaç "S" ile gösterilen gizli veriyi "n" tane kişiye dağıtmak ve "k" tanesini birleştirerek gizli verimi elde etmektir. Her bir kişiye bir pay değeri düşecektir. Öncelikle pay değerlerimi oluşturacak olan fonksiyon belirlenir.</p>
 
@@ -49,7 +49,7 @@
 <p>Burada a,b,c,z degerlerinin tanım aralığı [0,p-1] dir ve bu aralıktan rastgele olarak seçilirler. ("p" değeri görüntü saklarken 251 alınırken, başka bir verinin saklanırken kaç alınması gerektiği tamamen size kalmıştır) Ardından 1.payda hesaplanır, f(1) 1.paydanın değerinin belirler. Aynı şekilde 2.paydanın değeride f(2) ile hesaplanır, "n" tane paydanın değeri hesaplandıktan sonra rastgele "k" tanesi seçilir. Seçilen bu k tane payda Lagrange'ın interpolasyonunda gizli verinin elde edilmesinde kullanılır.</p>
 
 <h3>
-<a id="lagrange-İnterpolasyonu" class="anchor" href="#lagrange-%C4%B0nterpolasyonu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lagrange İnterpolasyonu</h3>
+<a id="lagrange-İnterpolasyonu" class="anchor" href="#lagrange-%C4%B0nterpolasyonu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lagrange İnterpolasyonu</h3>
 
 <p>Lagrange interpolasyonunda (n+1) noktadaki (x,y)(x1,y1)(x2,y2) değeri bilinen f(x) fonksiyonuna, bu noktalardaki değerleri eşit olan bir L(x) polinomu uydurulur. Hesaplama örneği aşağıdaki gibidir.
 <img src="http://komplexify.com/images/2007/Lagrange.gif" alt="Lagrange-İnterpolasyonu"></p>
@@ -57,7 +57,7 @@
 <p>Ardından f(x) ve "S" verimizi elde etmek için (1.pay için üretilen değer * l1) + (2.pay için üretilen değer * l2) + (3.pay için üretilen değer * l3) + ... bize f(x) fonksiyonumuzu verecektir.</p>
 
 <h2>
-<a id="shamir-yöntemi-ile-gizli-görüntü-paylaşımı" class="anchor" href="#shamir-y%C3%B6ntemi-ile-gizli-g%C3%B6r%C3%BCnt%C3%BC-payla%C5%9F%C4%B1m%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shamir Yöntemi ile Gizli Görüntü Paylaşımı</h2>
+<a id="shamir-yöntemi-ile-gizli-görüntü-paylaşımı" class="anchor" href="#shamir-y%C3%B6ntemi-ile-gizli-g%C3%B6r%C3%BCnt%C3%BC-payla%C5%9F%C4%B1m%C4%B1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shamir Yöntemi ile Gizli Görüntü Paylaşımı</h2>
 
 <p>Paylaşılan görüntünün gri seviye olduğu varsayılmıştır. Her bir piksel değerinin [0,255] aralığında değerler alabilecek olması sebebi ile, gizli görüntünün paylaşımından önce, piksel parlaklık değerleri üzerinde ön işlem yapılmaktadır. Shamir'in yönteminde "p" ile gösterilen ve sır olarak dağıtılacak olan verinin aralığını belirleyen bir asal sayı değeri kullanılmaktadır. Lin ve Tsai yöntemin görüntü paylaşımına adaptasyonu için belirlediği değer 251 dir. Çünkü [0,255] arasındaki en büyük asal sayı 251 dir. Bu nedenle gizli görüntünün bütün piksel değerleri 251'e göre mod işlemine tabi tutulur. Buradan sonra aslında karşımıza iki adet algoritma çıkmaktadır.</p>
 
@@ -66,7 +66,7 @@
 </code></pre>
 
 <h3>
-<a id="paylaştırma-algoritması" class="anchor" href="#payla%C5%9Ft%C4%B1rma-algoritmas%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paylaştırma Algoritması</h3>
+<a id="paylaştırma-algoritması" class="anchor" href="#payla%C5%9Ft%C4%B1rma-algoritmas%C4%B1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Paylaştırma Algoritması</h3>
 
 <pre><code>1- Gizli Gorüntüdeki tüm piksellerin 251'e göre modu alınır. Böylelikle piksel değerlerini [0,250] arasına çekmiş oluyoruz.
 2- 1.Piksel alınır ve Shamir'in Sır Paylaşma Şemasında anlattığımız işlemler yapılır.
@@ -80,7 +80,7 @@
   Adım 2'de gerçekleştirilen yerdeğiştirme(Permütasyon) işlemi sistemin güvenirliliğini arttırmaktadır.</p>
 
 <h3>
-<a id="yeniden-yapılandırma" class="anchor" href="#yeniden-yap%C4%B1land%C4%B1rma" aria-hidden="true"><span class="octicon octicon-link"></span></a>Yeniden Yapılandırma</h3>
+<a id="yeniden-yapılandırma" class="anchor" href="#yeniden-yap%C4%B1land%C4%B1rma" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yeniden Yapılandırma</h3>
 
 <pre><code>1- Tüm paylardaki 1.piksel değeri toplanır. 251 e göre modu alınır. Bu gizli görüntüdeki 1.pikselin değerini verir.
 2- Tüm piksel değerleri için 1.Adım gerçekleştirilir.
@@ -89,13 +89,13 @@
 <p>Teorik olarak Sır Paylaşımı budur ve bu şekilde gerçekleştirilir. Bu aşamadan sonra kod kısmına geçiş yapabilir ve kod üzerinden sır paylaşımı algoritmasını irdeleyebiliriz.</p>
 
 <h5>
-<a id="alıntı" class="anchor" href="#al%C4%B1nt%C4%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alıntı</h5>
+<a id="alıntı" class="anchor" href="#al%C4%B1nt%C4%B1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Alıntı</h5>
 
 <pre><code>PROF. DR. Vasif Vagifoğlu NABİYEV, "Algoritmalar",4.Baskı 256-260
 </code></pre>
 
 <h2>
-<a id="settings" class="anchor" href="#settings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Settings</h2>
+<a id="settings" class="anchor" href="#settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Settings</h2>
 
 <ul>
 <li><p>Paylaştırma</p></li>
@@ -106,13 +106,13 @@
 </ul>
 
 <h2>
-<a id="run" class="anchor" href="#run" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run</h2>
+<a id="run" class="anchor" href="#run" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Run</h2>
 
 <ul>
 <li>Paylaştırma</li>
 </ul>
 
-<div class="highlight highlight-bash"><pre>$ g++ -c bmptotxt.cpp
+<div class="highlight highlight-source-shell"><pre>$ g++ -c bmptotxt.cpp
 $ g++ -o bmptotxt bmptotxt.o
 $ ./bmptotxt
 $ g++ -c main.cpp
@@ -128,12 +128,12 @@ $ g++ -o secret main.o secret.o
 <li>Yeniden Yapılandırma</li>
 </ul>
 
-<div class="highlight highlight-bash"><pre>$ g++ -c solve.cpp
+<div class="highlight highlight-source-shell"><pre>$ g++ -c solve.cpp
 $ g++ -o solve solve.o
 ./solve</pre></div>
 
 <h2>
-<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
 
 <p>Programımızdan ufak bir örnek verelim. Gizli resmimizi "8" kişi içinden rastgele "4" kişiye dağıtalım.</p>
 
@@ -153,14 +153,14 @@ $ g++ -o solve solve.o
 <p><a href="http://internproject.zz.mu/res/new.bmp"><img src="http://internproject.zz.mu/res/new.bmp" alt="Cikti"></a></p>
 
 <h3>
-<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h3>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Credits</h3>
 
 <ul>
 <li><a href="https://github.com/bilalcorbacioglu">Bilal Çorbacıoğlu</a></li>
 </ul>
 
 <h3>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h3>
 
 <p>The GNU General Public License - see <a href="https://github.com/bilalcorbacioglu/Secret-Sharing/blob/master/LICENSE">LICENSE.md</a> for more details</p>
 
