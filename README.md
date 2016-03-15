@@ -25,7 +25,7 @@
 ###Lagrange İnterpolasyonu
 
  Lagrange interpolasyonunda (n+1) noktadaki (x,y)(x1,y1)(x2,y2) değeri bilinen f(x) fonksiyonuna, bu noktalardaki değerleri eşit olan bir L(x) polinomu uydurulur. Hesaplama örneği aşağıdaki gibidir.
-![Lagrange-İnterpolasyonu](http://komplexify.com/images/2007/Lagrange.gif)
+![Lagrange-İnterpolasyonu](https://github.com/bilalcorbacioglu/Secret-Sharing/raw/master/image/lagrange.gif)
 
   Ardından f(x) ve "S" verimizi elde etmek için (1.pay için üretilen değer * l1) + (2.pay için üretilen değer * l2) + (3.pay için üretilen değer * l3) + ... bize f(x) fonksiyonumuzu verecektir.
 
