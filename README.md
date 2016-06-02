@@ -77,9 +77,7 @@ Teorik olarak Sır Paylaşımı budur ve bu şekilde gerçekleştirilir. Bu aşa
 * Paylaştırma
 
 ```bash
-$ g++ -c main.cpp
-$ g++ -c secret.cpp
-$ g++ -c -I ../include secret.cpp
+$ g++ -c main.cpp secret.cpp
 $ g++ -o secret main.o secret.o
 ./secret
 ```
