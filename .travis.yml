@@ -2,12 +2,11 @@ language: cpp
 compiler: gcc
 
 script:
-  - cd Test
-  - g++ -c main_test.cpp
+  - cd Sources
+  - g++ -c main.cpp
   - g++ -c secret.cpp
   - g++ -c -I ../include secret.cpp
   - g++ -c -D NDEBUG secret.cpp
   - g++ -c -D NDEBUG=3 secret.cpp
   - g++ -c -O2 secret.cpp
-  - g++ -o secret main_test.o secret.o
-  - ./secret
+  - g++ -o secret main.o secret.o
