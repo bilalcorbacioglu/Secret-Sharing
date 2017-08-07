@@ -1,4 +1,4 @@
-#include "secret.h"
+#include "../Headers/secret.h"
 #include <iostream>
 #include <string>
 #include <stdio.h>

@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
-#include "bitmap_image.hpp"
+#include "../Headers/bitmap_image.hpp"
 
 using namespace std;
 

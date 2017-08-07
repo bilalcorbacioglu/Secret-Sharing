@@ -1,4 +1,4 @@
-#include "secret.h"
+#include "../Headers/secret.h"
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string.h>
-#include "bitmap_image.hpp"
+#include "../Headers/bitmap_image.hpp"
 using namespace std;
 int yedek;
 int subline;
